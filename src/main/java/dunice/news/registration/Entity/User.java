@@ -1,5 +1,5 @@
 package dunice.news.registration.Entity;
-
+//check mistake
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;

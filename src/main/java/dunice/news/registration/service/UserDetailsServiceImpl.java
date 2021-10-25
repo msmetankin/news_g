@@ -50,7 +50,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         return userFromDb.orElse(new User()); // TODO exeption
     }
 
-
+    //check mistake
     public boolean saveUser(User user) {
         Optional<User> userFromDb = userRepository.findByUsername(user.getUsername());
         if (userFromDB != null) {
