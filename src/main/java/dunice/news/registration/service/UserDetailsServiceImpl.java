@@ -1,7 +1,7 @@
 package dunice.news.registration.service;
 
-import dunice.internship.registration.repository.RoleRepository;
-import dunice.internship.registration.repository.UserRepository;
+import dunice.news.commond.RoleRepository;
+import dunice.news.commond.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -12,15 +12,13 @@ import javax.persistence.PersistenceContext;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-import lombok;
+
 @Service
 
 public class UserDetailsServiceImpl implements UserDetailsService {
-    @PersistenceContext
-    private EntityManager em;
 
 
-    @Allargconstruction
+
 
     @Autowired
     UserRepository userRepository;

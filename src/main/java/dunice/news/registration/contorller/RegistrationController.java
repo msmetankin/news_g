@@ -1,8 +1,9 @@
 package dunice.news.registration.contorller;
 
-import dunice.internship.registration.Entity.User;
-import dunice.internship.registration.response.ResponceHandler;
-import dunice.internship.registration.service.UserService;
+import dunice.news.registration.Entity.User;
+
+import dunice.news.registration.response.ResponceHandler;
+import dunice.news.registration.service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,7 @@ import javax.validation.Valid;
 public class RegistrationController {
 
     @Autowired
-    private UserService userService;
+    private UserDetailsServiceImpl userService;
 
     @GetMapping("/user")
     public String registration(Model model) {
@@ -26,6 +27,8 @@ public class RegistrationController {
 
         return "registration";
     }
+    @GetMapping(value ="/user/{id}")
+    public ResponseEntity<?>
 
     @PostMapping("/user")
     public String addUser(@ModelAttribute("userForm") @Valid User userForm, BindingResult bindingResult, Model model) {
