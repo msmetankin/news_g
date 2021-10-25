@@ -27,9 +27,10 @@ public class RegistrationController {
 
         return "registration";
     }
+    //check mistake
     @GetMapping(value ="/user/{id}")
     public ResponseEntity<?>
-
+    //check mistake
     @PostMapping("/user")
     public String addUser(@ModelAttribute("userForm") @Valid User userForm, BindingResult bindingResult, Model model) {
 
