@@ -1,8 +1,0 @@
-CREATE TABLE IF NOT EXISTS t_user
-(
-    id SERIAL PRIMARY KEY NOT NULL,
-    login VARCHAR(160) NOT NULL,
-    password VARCHAR(160) NOT NULL ,
-    image VARCHAR(160) NOT NULL ,
-
-);
