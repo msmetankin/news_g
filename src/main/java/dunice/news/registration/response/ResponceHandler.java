@@ -1,6 +1,6 @@
 package dunice.news.registration.response;
 
-import dunice.internship.registration.repository.UserRepository;
+import dunice.news.commond.UserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import java.util.HashMap;

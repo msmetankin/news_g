@@ -1,11 +1,11 @@
 package dunice.news.registration.Entity;
 
-
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import javax.persistence.*;
 import java.util.Set;
-@Getters
-@Setters
+@Getter
+@Setter
 @Entity
 @Table(name = "t_role")
 public class Role implements GrantedAuthority {

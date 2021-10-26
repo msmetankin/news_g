@@ -27,17 +27,15 @@ public class RegistrationController {
 
         return "registration";
     }
-    @GetMapping(value ="/user/{id}")
-    public ResponseEntity<?>
-
+    @GetMapping("/user/{id}")
+    public String userById(@PathVariable(name = "id") Long id,Model model) {
+        model.addAttribute("userForm", userService.findUserById(id));
+        return "userById";
+    }
     @PostMapping("/user")
     public String addUser(@ModelAttribute("userForm") @Valid User userForm, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
-            return "registration";
-        }
-        if (!userForm.getPassword().equals(userForm.getPasswordConfirm())){
-            model.addAttribute("passwordError", "Пароли не совпадают");
             return "registration";
         }
         if (!userService.saveUser(userForm)){
