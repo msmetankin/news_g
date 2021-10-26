@@ -1,17 +1,16 @@
 package dunice.news.registration.service;
 
+import dunice.news.registration.Entity.User;
+import dunice.news.registration.Entity.Role;
 import dunice.news.commond.RoleRepository;
 import dunice.news.commond.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 
@@ -45,14 +44,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         return userFromDb.orElse(new User());
     }
 
-    public List<User> allUsers() {
-        return userRepository.findAll();
-        return userFromDb.orElse(new User()); // TODO exeption
-    }
-
-
     public boolean saveUser(User user) {
-        Optional<User> userFromDb = userRepository.findByUsername(user.getUsername());
+        User userFromDB = userRepository.findByUsername(user.getUsername());
         if (userFromDB != null) {
 
             return false;
