@@ -1,8 +1,19 @@
-CREATE TABLE IF NOT EXISTS news
+
+CREATE TABLE IF NOT EXISTS t_role
 (
     id SERIAL PRIMARY KEY NOT NULL,
-    images VARCHAR(160) NOT NULL,
-    tags VARCHAR(160) NOT NULL ,
-    title VARCHAR(160) NOT NULL ,
-    created_At VARCHAR(100) NOT NULL
+    name VARCHAR(160) NOT NULL,
+
 );
+
+CREATE TABLE IF NOT EXISTS t_user
+(
+    id SERIAL PRIMARY KEY NOT NULL,
+    username VARCHAR(160) NOT NULL,
+    email VARCHAR(160) NOT NULL,
+    password VARCHAR(160) NOT NULL ,
+    avatar VARCHAR(160) NOT NULL ,
+    role int NOT NULL
+
+);
+
