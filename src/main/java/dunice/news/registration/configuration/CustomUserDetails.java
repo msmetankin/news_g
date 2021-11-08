@@ -3,7 +3,7 @@ package dunice.news.registration.configuration;
 
 
 
-import dunice.news.commond.entity.UserEntity;
+import dunice.news.common.entity.UserEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

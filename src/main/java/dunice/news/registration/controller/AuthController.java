@@ -1,7 +1,8 @@
 package dunice.news.registration.controller;
 
+import dunice.news.common.CustomException;
 import dunice.news.registration.configuration.jwt.JwtProvider;
-import dunice.news.commond.entity.UserEntity;
+import dunice.news.common.entity.UserEntity;
 import dunice.news.registration.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,6 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
+import static dunice.news.common.Errors.USER_WITH_THIS_EMAIL_ALREADY_EXIST;
+
+
 @RestController
 @RequestMapping("/api/v1")
 public class AuthController {
@@ -18,6 +22,7 @@ public class AuthController {
     private UserService userService;
     @Autowired
     private JwtProvider jwtProvider;
+    private Object Null;
 
     @PostMapping("/register")
     public String registerUser(@RequestBody @Valid RegistrationRequest registrationRequest) {
@@ -26,7 +31,10 @@ public class AuthController {
         u.setUsername(registrationRequest.getName());
         u.setEmail(registrationRequest.getEmail());
         u.setAvatar(registrationRequest.getAvatar());
-        userService.saveUser(u);
+        if (userService.findByLogin(u.getUsername())== Null) userService.saveUser(u);
+        else {
+            throw new CustomException(USER_WITH_THIS_EMAIL_ALREADY_EXIST);
+        }
         return "OK";
     }
 

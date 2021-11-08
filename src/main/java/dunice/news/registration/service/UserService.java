@@ -1,9 +1,9 @@
 package dunice.news.registration.service;
 
-import dunice.news.commond.entity.RoleEntity;
-import dunice.news.commond.entity.UserEntity;
-import dunice.news.commond.repository.RoleRepository;
-import dunice.news.commond.repository.UserRepository;
+import dunice.news.common.entity.RoleEntity;
+import dunice.news.common.entity.UserEntity;
+import dunice.news.common.repository.RoleRepository;
+import dunice.news.common.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

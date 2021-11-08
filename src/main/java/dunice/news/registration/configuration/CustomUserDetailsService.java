@@ -2,7 +2,7 @@ package dunice.news.registration.configuration;
 
 
 
-import dunice.news.commond.entity.UserEntity;
+import dunice.news.common.entity.UserEntity;
 import dunice.news.registration.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetailsService;
