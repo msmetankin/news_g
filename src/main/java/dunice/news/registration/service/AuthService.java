@@ -38,7 +38,7 @@ public class AuthService {
 
         user = usersRepository.save(user);
 
-        System.out.println(EMAIL_SIZE_NOT_VALID.getMessage());
+
 
         return Optional.of(ResponseUserDTO.fromUserEntity(user));
     }
