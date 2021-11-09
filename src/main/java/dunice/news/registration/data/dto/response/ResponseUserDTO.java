@@ -1,19 +1,30 @@
 package dunice.news.registration.data.dto.response;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import dunice.news.common.entity.UserEntity;
+import lombok.*;
 
+import java.util.UUID;
+
+@Builder
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class ResponseUserDTO {
-    String avatar;
-    String email;
-    String id;
-    String name;
-    String role;
-    String token;
+    private String avatar;
+    private String email;
+    private Integer id;
+    private String name;
+    private String role;
+    private String token;
+
+    public static ResponseUserDTO fromUserEntity(UserEntity entity) {
+        return ResponseUserDTO.builder()
+                .avatar(entity.getAvatar())
+                .email(entity.getEmail())
+                .id(entity.getId())
+                .name(entity.getUsername())
+                .role(entity.getRoleEntity().getName())
+                .build();
+    }
 }

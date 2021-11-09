@@ -57,8 +57,8 @@ public enum Errors {
     NEWS_IMAGE_HAS_TO_BE_PRESENT(45, "ValidationConstants.NEWS_IMAGE_HAS_TO_BE_PRESENT"),
     USER_WITH_THIS_EMAIL_ALREADY_EXIST(46, "ValidationConstants.USER_WITH_THIS_EMAIL_ALREADY_EXIST"),
     HTTP_MESSAGE_NOT_READABLE_EXCEPTION(47, "Http request not valid");
-    private final int code;
-    private final String message;
+    private int code;
+    private String message;
     public static Map<String, Integer> errorCodes = Stream.of(values()).collect(Collectors.toMap(message->message.message, code->code.code));
 
 

@@ -1,16 +1,16 @@
 package dunice.news.registration.data.dto.response;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
+@Builder
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class ResponseAuthDTO {
     private ResponseUserDTO data;
-    private int statusCode;
-    private boolean success;
+    @Builder.Default
+    private int statusCode = 0;
+    @Builder.Default
+    private boolean success = true;
 }

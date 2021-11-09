@@ -2,9 +2,7 @@ package dunice.news.common.entity;
 import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-
-@Getter
-@Setter
+@Data
 @Entity
 @Table(name = "roles")
 public class RoleEntity {
