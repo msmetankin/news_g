@@ -13,5 +13,8 @@ public class RoleEntity {
     @Column(name = "name")
     @NotBlank(message = "Text is mandatory")
     String name;
-
+    RoleEntity(){
+        id = 1;
+        name = "ROLE_USER";
+    }
 }
