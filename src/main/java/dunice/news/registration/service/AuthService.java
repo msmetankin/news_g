@@ -6,6 +6,7 @@ import dunice.news.common.repository.RoleRepository;
 import dunice.news.common.repository.UserRepository;
 import dunice.news.registration.data.dto.request.RegistrationDTO;
 import dunice.news.registration.data.dto.response.ResponseUserDTO;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -13,22 +14,15 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 import static dunice.news.common.Errors.*;
-
+@RequiredArgsConstructor
 @Service
 public class AuthService {
 
-    private UserRepository usersRepository;
-    private RoleRepository roleRepository;
-    private PasswordEncoder passwordEncoder;
+    private final UserRepository usersRepository;
+    private final RoleRepository roleRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    @Autowired
-    public AuthService(UserRepository usersRepository,
-                       RoleRepository roleRepository,
-                       PasswordEncoder passwordEncoder){
-        this.usersRepository = usersRepository;
-        this.roleRepository = roleRepository;
-        this.passwordEncoder = passwordEncoder;
-    }
+
     public  Optional<ResponseUserDTO> registerUser(RegistrationDTO registrationData) {
 
         if(!usersRepository.findByEmail(registrationData.getEmail()).isEmpty())

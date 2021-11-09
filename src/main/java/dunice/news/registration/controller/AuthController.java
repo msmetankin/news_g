@@ -7,6 +7,7 @@ import dunice.news.registration.data.dto.request.RegistrationDTO;
 import dunice.news.registration.data.dto.response.ResponseAuthDTO;
 import dunice.news.registration.data.dto.response.ResponseUserDTO;
 import dunice.news.registration.service.AuthService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,14 +21,13 @@ import java.util.Optional;
 
 import static dunice.news.common.Errors.UNKNOWN;
 
-
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/v1/auth")
 public class AuthController {
-    @Autowired
-    private AuthService authService;
-    @Autowired
-    private JwtProvider jwtProvider;
+
+    private final AuthService authService;
+    private final JwtProvider jwtProvider;
 
 
     @PostMapping("/register")
