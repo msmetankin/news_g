@@ -2,6 +2,7 @@ package dunice.news.registration.configuration.jwt;
 
 import dunice.news.registration.configuration.CustomUserDetails;
 import dunice.news.registration.configuration.CustomUserDetailsService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -20,15 +21,14 @@ import static org.springframework.util.StringUtils.hasText;
 
 @Component
 @Log
+@RequiredArgsConstructor
 public class JwtFilter extends GenericFilterBean {
 
     public static final String AUTHORIZATION = "Authorization";
 
-    @Autowired
-    private JwtProvider jwtProvider;
 
-    @Autowired
-    private CustomUserDetailsService customUserDetailsService;
+    private final JwtProvider jwtProvider;
+    private final CustomUserDetailsService customUserDetailsService;
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
