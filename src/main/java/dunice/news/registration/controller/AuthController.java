@@ -33,13 +33,7 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<ResponseAuthDTO> registerUser(@Valid @RequestBody  RegistrationDTO registrationDTO) {
          Optional<ResponseUserDTO> opt = authService.registerUser(registrationDTO);
-
-        ResponseUserDTO responseUserDTO = opt.orElseThrow(() -> new CustomException(UNKNOWN));
-        responseUserDTO.setToken(jwtProvider.generateToken(responseUserDTO.getId().toString()));
-        ResponseAuthDTO responseAuthDTO = ResponseAuthDTO.builder()
-                .data(responseUserDTO)
-                .build();
-        return ResponseEntity.ok().body(responseAuthDTO);
+         return ResponseEntity.ok().body(authService.userToken(opt));
     }
 
 

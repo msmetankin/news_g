@@ -4,10 +4,12 @@ import dunice.news.common.CustomException;
 import dunice.news.common.entity.UserEntity;
 import dunice.news.common.repository.RoleRepository;
 import dunice.news.common.repository.UserRepository;
+import dunice.news.registration.configuration.jwt.JwtProvider;
 import dunice.news.registration.data.dto.request.RegistrationDTO;
+import dunice.news.registration.data.dto.response.ResponseAuthDTO;
 import dunice.news.registration.data.dto.response.ResponseUserDTO;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -21,11 +23,11 @@ public class AuthService {
     private final UserRepository usersRepository;
     private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
+    private final JwtProvider jwtProvider;
 
+    public Optional<ResponseUserDTO> registerUser(RegistrationDTO registrationData) {
 
-    public  Optional<ResponseUserDTO> registerUser(RegistrationDTO registrationData) {
-
-        if(!usersRepository.findByEmail(registrationData.getEmail()).isEmpty())
+        if (!usersRepository.findByEmail(registrationData.getEmail()).isEmpty())
             throw new CustomException(USER_WITH_THIS_EMAIL_ALREADY_EXIST);
 
         UserEntity user = new UserEntity();
@@ -38,22 +40,19 @@ public class AuthService {
 
         user = usersRepository.save(user);
 
-
-
         return Optional.of(ResponseUserDTO.fromUserEntity(user));
+
     }
+
     public UserEntity findByLogin(String login) {
         return usersRepository.findByUsername(login);
     }
-    public UserEntity findByLoginAndPassword(String login, String password) {
-        UserEntity userEntity = findByLogin(login);
-        if (userEntity != null) {
-            if (passwordEncoder.matches(password, userEntity.getPassword())) {
-                return userEntity;
-            }
-        }
-        return null;
+
+    public  ResponseAuthDTO userToken(Optional<ResponseUserDTO> opt) {
+        ResponseUserDTO responseUserDTO = opt.orElseThrow(() -> new CustomException(UNKNOWN));
+        responseUserDTO.setToken(jwtProvider.generateToken(responseUserDTO.getId().toString()));
+        return ResponseAuthDTO.builder()
+                .data(responseUserDTO)
+                .build();
     }
-
-
 }
