@@ -18,7 +18,7 @@ import java.util.Optional;
 import static dunice.news.common.Errors.*;
 @RequiredArgsConstructor
 @Service
-public class AuthService {
+public class RegistrationService {
 
     private final UserRepository usersRepository;
     private final RoleRepository roleRepository;
@@ -33,7 +33,7 @@ public class AuthService {
         UserEntity user = new UserEntity();
         user.setAvatar(registrationData.getAvatar());
         user.setEmail(registrationData.getEmail());
-        user.setUsername(registrationData.getName());
+        user.setName(registrationData.getName());
         user.setPassword(passwordEncoder.encode(registrationData.getPassword()));
         user.setRoleEntity(roleRepository.findByName(registrationData.getRole())
                 .orElseThrow(() -> new CustomException(USER_ROLE_NOT_NULL)));
@@ -45,7 +45,7 @@ public class AuthService {
     }
 
     public UserEntity findByLogin(String login) {
-        return usersRepository.findByUsername(login);
+        return usersRepository.findByName(login);
     }
 
     public  ResponseAuthDTO userToken(Optional<ResponseUserDTO> opt) {

@@ -23,7 +23,7 @@ public class ResponseUserDTO {
                 .avatar(entity.getAvatar())
                 .email(entity.getEmail())
                 .id(entity.getId())
-                .name(entity.getUsername())
+                .name(entity.getName())
                 .role(entity.getRoleEntity().getName())
                 .build();
     }
