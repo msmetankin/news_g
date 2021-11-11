@@ -1,9 +1,9 @@
 package dunice.news.registration.controller;
 
 import dunice.news.registration.configuration.jwt.JwtProvider;
-import dunice.news.registration.data.dto.request.RegistrationDTO;
-import dunice.news.registration.data.dto.response.ResponseAuthDTO;
-import dunice.news.registration.data.dto.response.ResponseUserDTO;
+import dunice.news.common.dto.request.RegistrationDTO;
+import dunice.news.common.dto.response.ResponseAuthDTO;
+import dunice.news.common.dto.response.ResponseUserDTO;
 import dunice.news.registration.service.RegistrationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

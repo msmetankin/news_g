@@ -2,7 +2,7 @@ package dunice.news.auth;
 
 import dunice.news.common.entity.UserEntity;
 import dunice.news.registration.configuration.jwt.JwtProvider;
-import dunice.news.registration.data.dto.response.ResponseAuthDTO;
+import dunice.news.common.dto.response.ResponseAuthDTO;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.http.ResponseEntity;

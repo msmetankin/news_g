@@ -1,9 +1,7 @@
-package dunice.news.registration.data.dto.response;
+package dunice.news.common.dto.response;
 
 import dunice.news.common.entity.UserEntity;
 import lombok.*;
-
-import java.util.UUID;
 
 @Builder
 @Getter
