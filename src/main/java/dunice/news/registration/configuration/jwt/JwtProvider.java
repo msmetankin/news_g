@@ -1,6 +1,7 @@
 package dunice.news.registration.configuration.jwt;
 
 
+import dunice.news.common.CustomException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -11,6 +12,8 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
+
+import static dunice.news.common.Errors.TOKEN_NOT_PROVIDED;
 
 @Component
 @Log
@@ -41,5 +44,21 @@ public class JwtProvider {
     public String getLoginFromToken(String token) {
         Claims claims = Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody();
         return claims.getSubject();
+    }
+    private String clearToken(String token){
+        if (token.startsWith("Bearer "))
+            return token.substring(7);
+        else return token;
+    }
+
+    public String getIdFromToken(String token) {
+        try {
+            return Jwts.parser()
+                    .setSigningKey(jwtSecret)
+                    .parseClaimsJws(clearToken(token))
+                    .getBody().getSubject();
+        } catch (Exception e){
+            throw new CustomException(TOKEN_NOT_PROVIDED);
+        }
     }
 }

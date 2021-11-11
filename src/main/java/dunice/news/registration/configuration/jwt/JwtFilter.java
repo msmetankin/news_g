@@ -21,13 +21,12 @@ import static org.springframework.util.StringUtils.hasText;
 
 @Component
 @Log
-
 public class JwtFilter extends GenericFilterBean {
 
     public static final String AUTHORIZATION = "Authorization";
 
     @Autowired
-    private  JwtProvider jwtProvider;
+    private   JwtProvider jwtProvider;
     @Autowired
     private  CustomUserDetailsService customUserDetailsService;
 
@@ -45,10 +44,11 @@ public class JwtFilter extends GenericFilterBean {
     }
 
     private String getTokenFromRequest(HttpServletRequest request) {
-        String bearer = request.getHeader(AUTHORIZATION);
+        String bearer = request.getHeader("Authorization");
         if (hasText(bearer) && bearer.startsWith("Bearer ")) {
             return bearer.substring(7);
         }
         return null;
     }
+
 }
