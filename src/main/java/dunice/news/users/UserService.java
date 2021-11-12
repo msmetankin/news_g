@@ -37,8 +37,7 @@ public class UserService {
         else throw new CustomException(USER_NOT_FOUND);
     }
     public UserEntity findById(Integer userId) {
-        Optional<UserEntity> userFromDb = usersRepository.findById(userId);
-        UserEntity userEntity = userFromDb.orElseThrow(() -> new CustomException(UNKNOWN));
+        UserEntity userEntity = usersRepository.findById(userId);
         return userEntity;
     }
     public ResponseAuthDTO getUser(UserEntity userEntity) {

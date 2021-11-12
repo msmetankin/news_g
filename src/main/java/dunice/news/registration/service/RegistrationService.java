@@ -24,8 +24,7 @@ public class RegistrationService {
     private final PasswordEncoder passwordEncoder;
     private final JwtProvider jwtProvider;
 
-    public Optional<ResponseUserDTO> registerUser(RegistrationDTO registrationData) {
-
+    public ResponseUserDTO registerUser(RegistrationDTO registrationData) {
         if (usersRepository.findByEmail(registrationData.getEmail()).isEmpty()) {
             UserEntity user = new UserEntity();
             user.setAvatar(registrationData.getAvatar());
@@ -35,7 +34,7 @@ public class RegistrationService {
             user.setRoleEntity(roleRepository.findByName(registrationData.getRole())
                     .orElseThrow(() -> new CustomException(USER_ROLE_NOT_NULL)));
             user = usersRepository.save(user);
-            return Optional.of(ResponseUserDTO.fromUserEntity(user));
+            return ResponseUserDTO.fromUserEntity(user);
         }
         else throw new CustomException(USER_WITH_THIS_EMAIL_ALREADY_EXIST);
     }
@@ -44,8 +43,8 @@ public class RegistrationService {
         return usersRepository.findByName(login);
     }
 
-    public  ResponseAuthDTO userToken(Optional<ResponseUserDTO> opt) {
-        ResponseUserDTO responseUserDTO = opt.orElseThrow(() -> new CustomException(UNKNOWN));
+    public  ResponseAuthDTO userToken(ResponseUserDTO opt) {
+        ResponseUserDTO responseUserDTO = opt;
         responseUserDTO.setToken(jwtProvider.generateToken(responseUserDTO.getId().toString()));
         return ResponseAuthDTO.builder()
                 .data(responseUserDTO)

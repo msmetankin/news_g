@@ -27,8 +27,8 @@ public class RegistrationController {
 
     @PostMapping("/register")
     public ResponseEntity<ResponseAuthDTO> registerUser(@Valid @RequestBody  RegistrationDTO registrationDTO) {
-         Optional<ResponseUserDTO> opt = authService.registerUser(registrationDTO);
-         return ResponseEntity.ok().body(authService.userToken(opt));
+        ResponseUserDTO opt = authService.registerUser(registrationDTO);
+        return ResponseEntity.ok().body(authService.userToken(opt));
     }
 
 
