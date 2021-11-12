@@ -1,6 +1,7 @@
 package dunice.news.users;
 
 
+import dunice.news.common.dto.request.UpdateUserDTO;
 import dunice.news.common.dto.response.ResponseAuthDTO;
 import dunice.news.registration.configuration.jwt.JwtProvider;
 import lombok.RequiredArgsConstructor;
@@ -10,7 +11,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.concurrent.atomic.AtomicInteger;
+
 
 @Controller
 @RequestMapping(value = "/v1/user")
@@ -27,8 +28,20 @@ public class UserController {
     }
     @DeleteMapping
     public ResponseEntity.BodyBuilder deleteUser(@RequestHeader (name = "Authorization") String token){
-        Long id = Long.parseLong(jwtProvider.getIdFromToken(token));
+        Integer id = Integer.parseInt(jwtProvider.getIdFromToken(token));
         usersService.deleteUser(id);
         return ResponseEntity.ok();
+    }
+    @GetMapping
+    public ResponseEntity<ResponseAuthDTO> getUser(@RequestHeader (name = "Authorization") String token){
+        Integer id = Integer.parseInt(jwtProvider.getIdFromToken(token));
+        return ResponseEntity.ok().body(usersService.getUser(usersService.findById(id)));
+    }
+    @PutMapping
+    public ResponseEntity<ResponseAuthDTO> putUser(@RequestHeader (name = "Authorization") String token, @Valid @RequestBody UpdateUserDTO user){
+        Integer id = Integer.parseInt(jwtProvider.getIdFromToken(token));
+
+        return ResponseEntity.ok().body(usersService.getUser(usersService.findById(id)));
+
     }
 }

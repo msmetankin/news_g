@@ -30,11 +30,8 @@ public class UserService {
         return userEntity;
     }
 
-    public void deleteUser(Long id) {
-        if (usersRepository.findById(id).isPresent()) {
-            usersRepository.deleteById(id);
-        }
-        else throw new CustomException(USER_NOT_FOUND);
+    public void deleteUser(Integer id) {
+            usersRepository.delete(usersRepository.findById(id));
     }
     public UserEntity findById(Integer userId) {
         UserEntity userEntity = usersRepository.findById(userId);
