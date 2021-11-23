@@ -9,7 +9,7 @@ plugins {
 
 group = 'dunice'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '17'
+
 
 configurations {
 	compileOnly {
@@ -22,24 +22,24 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-data-rest:2.5.5'
-	implementation 'org.springframework.boot:spring-boot-starter-security:2.5.5'
-	implementation 'org.springframework.boot:spring-boot-starter-web:2.5.5'
-	implementation 'org.springframework.boot:spring-boot-starter-web-services:2.5.5'
-	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'org.springframework.boot:spring-boot-starter-data-rest:2.5.6'
+	implementation 'org.springframework.boot:spring-boot-starter-security:2.5.6'
+	implementation 'org.springframework.boot:spring-boot-starter-web:2.5.6'
+	implementation 'org.springframework.boot:spring-boot-starter-web-services:2.5.6'
+	implementation 'org.springframework.boot:spring-boot-starter-validation:2.5.6'
 	// https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt
 	implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.2'
-	implementation 'org.hibernate:hibernate-core:5.5.8.Final'
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.5.5'
+	implementation 'org.hibernate:hibernate-core:5.6.1.Final'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.5.6'
 	api 'com.google.guava:guava:31.0.1-jre'
 	testImplementation 'junit:junit:4.13.2'
 	compileOnly 'org.projectlombok:lombok:1.18.22'
-	runtimeOnly 'org.postgresql:postgresql:42.2.24.jre7'
+	runtimeOnly 'org.postgresql:postgresql:42.3.1'
 	annotationProcessor 'org.projectlombok:lombok:1.18.22'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test:2.5.5'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test:2.5.6'
 	testImplementation 'org.springframework.security:spring-security-test:5.5.1'
 
-	testImplementation 'org.springframework.boot:spring-boot-starter-test:2.5.5'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test:2.5.6'
 }
 
 test {

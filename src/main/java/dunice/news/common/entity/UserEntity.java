@@ -9,6 +9,7 @@ import static dunice.news.common.ErrorMessages.*;
 
 
 @Data
+@EqualsAndHashCode(callSuper=false)
 @Entity
 @NoArgsConstructor
 @Table(name = "users")
@@ -18,13 +19,10 @@ public class UserEntity  {
     @Column (name  = "ID")
     private Integer id;
     @Column(name = "username")
-    @NotBlank(message = USER_NAME_HAS_TO_BE_PRESENT)
-    private String username;
+    private String name;
     @Column(name = "password")
-    @NotBlank(message = PASSWORD_NOT_NULL)
     private String password;
     @Column(name = "email")
-    @NotBlank(message = USER_EMAIL_NOT_NULL)
     private String email;
     @Column(name = "avatar")
     private String avatar;

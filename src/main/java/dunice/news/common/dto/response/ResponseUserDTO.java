@@ -1,9 +1,7 @@
-package dunice.news.registration.data.dto.response;
+package dunice.news.common.dto.response;
 
 import dunice.news.common.entity.UserEntity;
 import lombok.*;
-
-import java.util.UUID;
 
 @Builder
 @Getter
@@ -23,7 +21,9 @@ public class ResponseUserDTO {
                 .avatar(entity.getAvatar())
                 .email(entity.getEmail())
                 .id(entity.getId())
-                .name(entity.getUsername())
+
+                .name(entity.getName())
+
                 .role(entity.getRoleEntity().getName())
                 .build();
     }

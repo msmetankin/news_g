@@ -1,4 +1,4 @@
-package dunice.news.registration.data.dto.response;
+package dunice.news.common.dto.response;
 
 import lombok.*;
 
