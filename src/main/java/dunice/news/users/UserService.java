@@ -1,6 +1,7 @@
 package dunice.news.users;
 
 import dunice.news.common.CustomException;
+import dunice.news.common.dto.request.UpdateUserDTO;
 import dunice.news.common.dto.response.ResponseAuthDTO;
 import dunice.news.common.dto.response.ResponseUserDTO;
 import dunice.news.common.entity.UserEntity;
@@ -48,6 +49,17 @@ public class UserService {
         responseUserDTO.setRole(userEntity.getRoleEntity().getName());
         return ResponseAuthDTO.builder()
                 .data(responseUserDTO)
+                .build();
+    }
+    public ResponseAuthDTO updateUser(Integer id, UpdateUserDTO userDTO) {
+        UserEntity user = usersRepository.findById(id);
+        user.setAvatar("string");
+        user.setEmail(userDTO.getEmail());
+        user.setName(userDTO.getName());
+        usersRepository.save(user);
+        ResponseUserDTO newUser = ResponseUserDTO.fromUserEntity(user);
+        return ResponseAuthDTO.builder()
+                .data(newUser)
                 .build();
     }
 }

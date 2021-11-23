@@ -3,6 +3,7 @@ package dunice.news.users;
 
 import dunice.news.common.dto.request.UpdateUserDTO;
 import dunice.news.common.dto.response.ResponseAuthDTO;
+import dunice.news.common.dto.response.ResponseUserDTO;
 import dunice.news.registration.configuration.jwt.JwtProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -38,10 +39,9 @@ public class UserController {
         return ResponseEntity.ok().body(usersService.getUser(usersService.findById(id)));
     }
     @PutMapping
-    public ResponseEntity<ResponseAuthDTO> putUser(@RequestHeader (name = "Authorization") String token, @Valid @RequestBody UpdateUserDTO user){
+    public ResponseEntity<ResponseAuthDTO> putUser(@RequestHeader(name="Authorization") String token, @Valid @RequestBody UpdateUserDTO user){
         Integer id = Integer.parseInt(jwtProvider.getIdFromToken(token));
-
-        return ResponseEntity.ok().body(usersService.getUser(usersService.findById(id)));
+        return ResponseEntity.ok().body(usersService.updateUser(id,user));
 
     }
 }
