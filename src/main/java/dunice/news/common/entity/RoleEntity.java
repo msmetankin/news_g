@@ -11,6 +11,5 @@ public class RoleEntity {
     @Column(name = "ID")
     int id;
     @Column(name = "name")
-    @NotBlank(message = "Text is mandatory")
     String name;
 }
